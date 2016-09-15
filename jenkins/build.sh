@@ -6,6 +6,5 @@ else
    version="${1}"
 fi
 
-
-docker build -t gurulearningxyz/helloworld-nodejs-app:${version} .
 cd ..
+docker build -t gurulearningxyz/helloworld-nodejs-app:${version} .
