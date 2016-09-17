@@ -67,6 +67,4 @@ node {
 
     // Clean up
     stage 'Clean'
-    sh "docker kill test-container-${env.BUILD_NUMBER}"
-    sh "docker rm test-container-${env.BUILD_NUMBER}"
 }
