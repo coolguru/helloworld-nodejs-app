@@ -73,8 +73,8 @@ node {
           filename: 'marathon.json',
           appid: 'helloworld-nodejs-app',
           labels: {
-              HAPROXY_0_VHOST: 'dcosagentx3oj74aqi34q2.westus.cloudapp.azure.com:8080',
-              HAPROXY_GROUP: 'external',
+              'HAPROXY_0_VHOST': 'dcosagentx3oj74aqi34q2.westus.cloudapp.azure.com:8080',
+              'HAPROXY_GROUP': 'external',
           },
           docker: "gurulearningxyz/helloworld-nodejs-app:${gitCommit()}".toString(),
           labels: ['lastChangedBy': "${gitEmail()}".toString()]
