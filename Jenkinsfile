@@ -60,9 +60,20 @@ node {
           forceUpdate: false,
           credentialsId: 'dcos-token',
           filename: 'marathon.json',
-          appid: 'jenkins-deployed-app',
+          appid: 'helloworld-nodejs-app',
           docker: "gurulearningxyz/helloworld-nodejs-app:${gitCommit()}".toString(),
           labels: ['lastChangedBy': "${gitEmail()}".toString()]
+      )
+    }
+    else {
+      marathon(
+          url: 'http://marathon.mesos:8080',
+          forceUpdate: false,
+          credentialsId: 'dcos-token',
+          filename: 'marathon.json',
+          appid: 'helloworld-nodejs-app',
+          docker: "gurulearningxyz/helloworld-nodejs-app:${gitCommit()}".toString(),
+          labels: ['lastChangedBy': "${gitEmail()}".toString(),'HAPROXY_0_VHOST': "dcosagentx3oj74aqi34q2.westus.cloudapp.azure.com:8080"]
       )
     }
 
