@@ -54,16 +54,17 @@ node {
 
     // Deploy
     stage 'Deploy'
-
-    marathon(
-        url: 'http://marathon.mesos:8080',
-        forceUpdate: false,
-        credentialsId: 'dcos-token',
-        filename: 'marathon.json',
-        appid: 'jenkins-deployed-app',
-        docker: "gurulearningxyz/helloworld-nodejs-app:${gitCommit()}".toString(),
-        labels: ['lastChangedBy': "${gitEmail()}".toString()]
-    )
+    if (env.BRANCH_NAME == 'master') {
+      marathon(
+          url: 'http://marathon.mesos:8080',
+          forceUpdate: false,
+          credentialsId: 'dcos-token',
+          filename: 'marathon.json',
+          appid: 'jenkins-deployed-app',
+          docker: "gurulearningxyz/helloworld-nodejs-app:${gitCommit()}".toString(),
+          labels: ['lastChangedBy': "${gitEmail()}".toString()]
+      )
+    }
 
     // Clean up
     stage 'Clean'
