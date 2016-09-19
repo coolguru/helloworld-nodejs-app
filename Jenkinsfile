@@ -60,7 +60,7 @@ node {
           forceUpdate: false,
           credentialsId: 'dcos-token',
           filename: 'marathon.json',
-          appid: 'jenkins-deployed-app',
+          appid: 'helloworld-nodejs-app',
           docker: "gurulearningxyz/helloworld-nodejs-app:${gitCommit()}".toString(),
           labels: ['lastChangedBy': "${gitEmail()}".toString()]
       )
