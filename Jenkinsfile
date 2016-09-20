@@ -39,17 +39,7 @@ node {
 
     // Log in and push image to Docker Hub
     stage 'Publish'
-    withCredentials(
-        [[
-            $class: 'UsernamePasswordMultiBinding',
-            credentialsId: 'docker-hub-credentials',
-            passwordVariable: 'DOCKER_HUB_PASSWORD',
-            usernameVariable: 'DOCKER_HUB_USERNAME'
-        ]]
-    ) {
-        sh "docker login -u ${env.DOCKER_HUB_USERNAME} -p ${env.DOCKER_HUB_PASSWORD} -e demo@mesosphere.com"
-        sh "docker push quay.io/valassis/helloworld-nodejs-app:${gitCommit()}"
-    }
+    sh "docker push quay.io/valassis/helloworld-nodejs-app:${gitCommit()}"
 
 
     // Deploy
