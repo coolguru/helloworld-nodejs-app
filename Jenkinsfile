@@ -28,12 +28,12 @@ node {
 
     // Build Docker image
     stage 'Build'
-    sh "docker build -t gurulearningxyz/helloworld-nodejs-app:${gitCommit()} ."
+    sh "docker build -t quay.io/valassis/helloworld-nodejs-app:${gitCommit()} ."
 
 
     // Test Docker image
     //stage 'Test'
-    //sh "docker run -d --name=test-container-${env.BUILD_NUMBER} gurulearningxyz/helloworld-nodejs-app:${gitCommit()}"
+    //sh "docker run -d --name=test-container-${env.BUILD_NUMBER} quay.io/valassis/helloworld-nodejs-app:${gitCommit()}"
     //sh "docker run mesosphere/linkchecker linkchecker --no-warnings http://${ipAddress()}:4000/"
 
 
@@ -48,7 +48,7 @@ node {
         ]]
     ) {
         sh "docker login -u ${env.DOCKER_HUB_USERNAME} -p ${env.DOCKER_HUB_PASSWORD} -e demo@mesosphere.com"
-        sh "docker push gurulearningxyz/helloworld-nodejs-app:${gitCommit()}"
+        sh "docker push quay.io/valassis/helloworld-nodejs-app:${gitCommit()}"
     }
 
 
@@ -56,12 +56,12 @@ node {
     stage 'Deploy'
     if (env.BRANCH_NAME == 'master') {
       marathon(
-          url: 'http://marathon.mesos:8080',
+          url: 'http://docker-master.plumlabs.us/service/dev/v2/apps',
           forceUpdate: false,
-          credentialsId: 'dcos-token',
+          credentialsId: 'dcos_token',
           filename: 'marathon.json',
           appid: 'helloworld-nodejs-app',
-          docker: "gurulearningxyz/helloworld-nodejs-app:${gitCommit()}".toString(),
+          docker: "quay.io/valassis/helloworld-nodejs-app:${gitCommit()}".toString(),
           labels: ['lastChangedBy': "${gitEmail()}".toString()]
       )
     }

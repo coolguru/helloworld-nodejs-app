@@ -16,8 +16,8 @@
     "id": "cd-demo-app",
     "instances": 1,
     "labels": {
-        "HAPROXY_0_VHOST": "dcosagentx3oj74aqi34q2.westus.cloudapp.azure.com",
-        "HAPROXY_GROUP": "external",
+        "HAPROXY_0_VHOST": "hellovalassis.plumlabs.us",
+        "HAPROXY_GROUP": "dev",
     },
     "mem": 128,
     "upgradeStrategy": {
