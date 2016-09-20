@@ -38,8 +38,8 @@ node {
 
 
     // Log in and push image to Docker Hub
-    stage 'Publish'
-    sh "docker push quay.io/valassis/helloworld-nodejs-app:${gitCommit()}"
+    //stage 'Publish'
+    //sh "docker push quay.io/valassis/helloworld-nodejs-app:${gitCommit()}"
 
 
     // Deploy
