@@ -39,8 +39,10 @@ node {
 
     // Log in and push image to quay.io
     stage 'Publish'
-    sh "ln -sf /mnt/mesos/sandbox/jenkins-config.json /root/.dockercfg"
-    sh "docker push quay.io/valassis/helloworld-nodejs-app:${gitCommit()}"
+    if (env.BRANCH_NAME == 'master') {
+      sh "ln -sf /mnt/mesos/sandbox/jenkins-config.json /root/.dockercfg"
+      sh "docker push quay.io/valassis/helloworld-nodejs-app:${gitCommit()}"
+    }
 
     // Deploy
     stage 'Deploy'
