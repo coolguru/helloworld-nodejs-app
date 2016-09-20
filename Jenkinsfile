@@ -39,7 +39,7 @@ node {
 
     // Log in and push image to quay.io
     stage 'Publish'
-    sh setup_publish.sh
+    sh "ln -sf /mnt/mesos/sandbox/jenkins-config.json /root/.dockercfg"
     sh "docker push quay.io/valassis/helloworld-nodejs-app:${gitCommit()}"
 
 
